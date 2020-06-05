@@ -16,8 +16,8 @@ riingo_set_token(Sys.getenv("RIINGO_TOKEN"))
 riingo_get_token()
 
 # Set the start date and symbols of interest
-from <- "2020-04-15"
-symbols <- c("batusd", "ethusd", "btcusd", "trxusd")
+from <- "2020-03-15"
+symbols <- c("batusd", "btcusd")
 
 # Get the data from Tiingo
 crypto_data <- riingo_crypto_prices(symbols,

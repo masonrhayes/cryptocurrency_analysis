@@ -16,7 +16,7 @@ riingo_set_token(Sys.getenv("RIINGO_TOKEN"))
 riingo_get_token()
 
 # Set the start date and symbols of interest
-from <- "2020-03-15"
+from <- "2020-05-01"
 symbols <- c("batusd", "btcusd")
 
 # Get the data from Tiingo
@@ -66,9 +66,9 @@ crypto_return_graph <- ggplot(data = crypto_returns2, aes(x = date, y = Returns)
 crypto_return_graph
 
 # Calculate portfolio returns
-crypto_returns <- na.omit(crypto_returns)
-crypto_returns_total <- crypto_returns %>%
-  transmute(total_returns = rowSums(crypto_returns[,2:length(crypto_returns)]))
+crypto_returns_df <- na.omit(crypto_returns_df)
+crypto_returns_total <- crypto_returns_df %>%
+  transmute(total_returns = rowSums(crypto_returns_df[,2:length(crypto_returns_df)]))
 
 # Histogram of the returns
 crypto_histogram <- ggplot(data = crypto_returns_total, aes(x = total_returns)) +

@@ -1,3 +1,5 @@
+# A simple R script to gather cryptocurrency price data
+
 library(usethis)
 library(tidyverse)
 library(riingo)
@@ -24,7 +26,10 @@ crypto_data <- riingo_crypto_prices(symbols,
                                     start_date = from,
                                     end_date = today(),
                                     resample_frequency = "1day") %>%
-  group_by(ticker)
+  group_by(ticker) %>%
+  convert_to_local_time(tz = "EST") %>%
+  select(ticker, date, open, high, low, close, volume) %>%
+  mutate(date = as.Date.POSIXct(date))
 
 # Graph the data (SMA + BBands)
 crypto_graphs <- crypto_data %>%
